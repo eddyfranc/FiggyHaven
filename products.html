@@ -614,11 +614,13 @@
               return;
             }
 
+            const productCard = button.closest('div.text-center');
             const productName = button.getAttribute('data-name');
             const productPrice = parseFloat(button.getAttribute('data-price'));
+            const productImage = productCard.querySelector('img').getAttribute('src');
 
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({ name: productName, price: productPrice });
+            cart.push({ name: productName, price: productPrice, image: productImage });
             localStorage.setItem('cart', JSON.stringify(cart));
 
             alert(`${productName} has been added to your cart!`);

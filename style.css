@@ -1,0 +1,32 @@
+/* style.css */
+
+/* Navigation link styling */
+nav ul li a {
+  color: #4b5563; /* text-gray-600 */
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #f97316; /* text-orange-500 */
+}
+
+/* Active page styling */
+nav ul li a.active {
+  border-bottom: 2px solid #f97316; /* border-b-2 border-orange-500 */
+  color: #f97316; /* text-orange-500 */
+}
+
+/* Ensure the SVG cart icon matches the text color */
+nav .cart-icon {
+  color: #4b5563; /* text-gray-600 */
+  transition: color 0.3s ease;
+}
+
+nav .cart-icon:hover {
+  color: #f97316; /* text-orange-500 */
+}
+
+nav .cart-icon.active {
+  border-bottom: 2px solid #f97316; /* border-b-2 border-orange-500 */
+  color: #f97316; /* text-orange-500 */
+}
