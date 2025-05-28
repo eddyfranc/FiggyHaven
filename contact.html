@@ -7,23 +7,33 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-  <header class="flex items-center justify-between px-6 py-4 bg-white shadow">
-    <div class="text-orange-500 text-3xl font-bold">
-      FIGGYHAVEN
-    </div>
-    <nav class="flex items-center space-x-6">
-      <a href="index.html" class="text-gray-600 hover:text-orange-500">Home</a>
-      <a href="products.html" class="text-gray-600 border-b-2 border-orange-500">Products</a>
-      <a href="#" class="text-gray-600 hover:text-orange-500 active">Contact</a>
-      <a href="about.html" class="text-gray-600 hover:text-orange-500">About</a>
-      <!-- Shopping Bag Icon -->
-      <a href="#" class="text-gray-600 hover:text-orange-500">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-        </svg>
-      </a>
-    </nav>
-  </header>
+   <!-- Navbar -->
+    <header class="flex items-center justify-between px-6 py-4 bg-white shadow">
+      <!-- Logo -->
+      <div class="text-orange-500 text-3xl font-bold">FIGGYHAVEN</div>
+
+      <!-- Navigation -->
+      <nav class="flex items-center">
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="text-gray-600 hover:text-orange-500">Home</a></li>
+          <li><a href="products.html" class="text-gray-600 hover:text-orange-500">Products</a></li>
+          <li><a href="contact.html" class="text-gray-600 hover:text-orange-500">Contact</a></li>
+          <li><a href="about.html" class="text-gray-600 hover:text-orange-500">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Cart and Login -->
+      <div class="flex items-center space-x-4">
+        <!-- Cart Icon -->
+        <a href="cart.html" class="text-gray-600 hover:text-orange-500 border-b-2 border-orange-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+        </a>
+        <!-- Login/Logout Button -->
+        <button id="authBtn" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Login</button>
+      </div>
+    </header>
   <!-- Contact Section -->
   <section class="container mx-auto px-6 py-12">
     

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FiggyHaven</title>
+    <title>FiggyHaven - Products</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100">
@@ -13,46 +13,57 @@
       <div class="text-orange-500 text-3xl font-bold">FIGGYHAVEN</div>
 
       <!-- Navigation -->
-      <nav class="flex items-center space-x-6">
-        <a href="index.html" class="text-gray-600 hover:text-orange-500"
-          >Home</a
-        >
-        <a href="#" class="text-gray-600 border-b-2 border-orange-500 active"
-          >Products</a
-        >
-        <a href="contact.html" class="text-gray-600 hover:text-orange-500"
-          >Contact</a
-        >
-        <a href="cart.html" class="text-gray-600 hover:text-orange-500"
-          >About</a
-        >
-        <!-- Shopping Bag Icon -->
-        <a href="#" class="text-gray-600 hover:text-orange-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-            />
+      <nav class="flex items-center">
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="text-gray-600 hover:text-orange-500">Home</a></li>
+          <li><a href="products.html" class="text-gray-600 border-b-2 border-orange-500">Products</a></li>
+          <li><a href="contact.html" class="text-gray-600 hover:text-orange-500">Contact</a></li>
+          <li><a href="about.html" class="text-gray-600 hover:text-orange-500">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Cart and Login -->
+      <div class="flex items-center space-x-4">
+        <!-- Cart Icon -->
+        <a href="cart.html" class="text-gray-600 hover:text-orange-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
         </a>
-      </nav>
+        <!-- Login/Logout Button -->
+        <button id="authBtn" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Login</button>
+      </div>
     </header>
+
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 id="modalTitle" class="text-2xl font-bold mb-4">Login</h2>
+        <div class="space-y-4">
+          <div>
+            <label for="username" class="block text-gray-700">Username</label>
+            <input type="text" id="username" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500" />
+          </div>
+          <div>
+            <label for="password" class="block text-gray-700">Password</label>
+            <input type="password" id="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500" />
+          </div>
+          <div class="flex space-x-4">
+            <button id="loginBtn" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Login</button>
+            <button id="registerBtn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Register</button>
+            <button id="closeModal" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Close</button>
+          </div>
+          <p id="modalMessage" class="text-red-500 mt-2 hidden"></p>
+        </div>
+      </div>
+    </div>
 
     <!-- Products Section -->
     <section class="container mx-auto px-6 py-12">
       <!-- Breadcrumb -->
-    <div class="text-sm text-orange-500 mb-4 text-center p-50">
-      <a href="#" class="hover:underline">HOME</a> / CONTACT
-    </div>
-
+      <div class="text-sm text-orange-500 mb-4 text-center p-50">
+        <a href="index.html" class="hover:underline">HOME</a> / PRODUCTS
+      </div>
 
       <!-- Heading -->
       <h1 class="text-5xl font-bold text-gray-800 mb-10 text-center">
@@ -73,8 +84,9 @@
           <h3 class="text-lg font-semibold mt-2">Master Shifu</h3>
           <p class="text-gray-600">KSH1200.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Master Shifu')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Master Shifu"
+            data-price="1200.00"
           >
             Add to cart
           </button>
@@ -91,13 +103,13 @@
           <h3 class="text-lg font-semibold mt-2">Goofy</h3>
           <p class="text-gray-600">KSH850.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Goofy')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Goofy"
+            data-price="850.00"
           >
             Add to cart
           </button>
         </div>
-
 
         <div class="text-center">
           <div class="relative">
@@ -110,13 +122,13 @@
           <h3 class="text-lg font-semibold mt-2">Evil Minion</h3>
           <p class="text-gray-600">KSH850.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Evil Minion')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Evil Minion"
+            data-price="850.00"
           >
             Add to cart
           </button>
         </div>
-
 
         <div class="text-center">
           <div class="relative">
@@ -129,14 +141,13 @@
           <h3 class="text-lg font-semibold mt-2">Optimus Prime</h3>
           <p class="text-gray-600">KSH850.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Optimus Prime')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Optimus Prime"
+            data-price="850.00"
           >
             Add to cart
           </button>
         </div>
-
-
 
         <div class="text-center">
           <div class="relative">
@@ -149,8 +160,9 @@
           <h3 class="text-lg font-semibold mt-2">Luigi</h3>
           <p class="text-gray-600">KSH850.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Luigi')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Luigi"
+            data-price="850.00"
           >
             Add to cart
           </button>
@@ -167,8 +179,9 @@
           <h3 class="text-lg font-semibold mt-2">Mario</h3>
           <p class="text-gray-600">KSH850.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Mario')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Mario"
+            data-price="850.00"
           >
             Add to cart
           </button>
@@ -185,8 +198,9 @@
           <h3 class="text-lg font-semibold mt-2">Pokemon Litten</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Pokemon Litten')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Pokemon Litten"
+            data-price="800.00"
           >
             Add to cart
           </button>
@@ -203,8 +217,9 @@
           <h3 class="text-lg font-semibold mt-2">GI.Joe Domez</h3>
           <p class="text-gray-600">KSH1200.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('GI.Joe Domez')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="GI.Joe Domez"
+            data-price="1200.00"
           >
             Add to cart
           </button>
@@ -221,13 +236,13 @@
           <h3 class="text-lg font-semibold mt-2">The Joker</h3>
           <p class="text-gray-600">KSH900.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('The Joker')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="The Joker"
+            data-price="900.00"
           >
             Add to cart
           </button>
         </div>
-
 
         <div class="text-center">
           <div class="relative">
@@ -240,13 +255,13 @@
           <h3 class="text-lg font-semibold mt-2">Pokemon Meowth</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Pokemon Meowth')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Pokemon Meowth"
+            data-price="800.00"
           >
             Add to cart
           </button>
         </div>
-
 
         <div class="text-center">
           <div class="relative">
@@ -259,8 +274,9 @@
           <h3 class="text-lg font-semibold mt-2">M Fast Fong</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('M Fast Fong')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="M Fast Fong"
+            data-price="800.00"
           >
             Add to cart
           </button>
@@ -277,13 +293,13 @@
           <h3 class="text-lg font-semibold mt-2">Lamborgini Reventon</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Lamborgini Reventon')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Lamborgini Reventon"
+            data-price="800.00"
           >
             Add to cart
           </button>
         </div>
-
 
         <div class="text-center">
           <div class="relative">
@@ -296,15 +312,14 @@
           <h3 class="text-lg font-semibold mt-2">Mercedes-AMG GT</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Mercedes-AMG GT')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Mercedes-AMG GT"
+            data-price="800.00"
           >
             Add to cart
           </button>
         </div>
-        
-        
-        
+
         <div class="text-center">
           <div class="relative">
             <img
@@ -316,22 +331,13 @@
           <h3 class="text-lg font-semibold mt-2">Vintage Peterbilt</h3>
           <p class="text-gray-600">KSH750.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Vintage Peterbilt')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Vintage Peterbilt"
+            data-price="750.00"
           >
             Add to cart
           </button>
         </div>
-
-
-
-
-
-
-
-
-
-
 
         <div class="text-center">
           <div class="relative">
@@ -344,8 +350,9 @@
           <h3 class="text-lg font-semibold mt-2">Thor</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Thor')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Thor"
+            data-price="800.00"
           >
             Add to cart
           </button>
@@ -359,11 +366,12 @@
               class="w-full h-64 object-contain transition-transform duration-300 hover:scale-110"
             />
           </div>
-          <h3 class="text-lg font-semibold mt-2">Master Shifu</h3>
+          <h3 class="text-lg font-semibold mt-2">Black Panther</h3>
           <p class="text-gray-600">KSH900.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Black Panther')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Black Panther"
+            data-price="900.00"
           >
             Add to cart
           </button>
@@ -380,8 +388,9 @@
           <h3 class="text-lg font-semibold mt-2">Batman</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Batman')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Batman"
+            data-price="800.00"
           >
             Add to cart
           </button>
@@ -398,8 +407,9 @@
           <h3 class="text-lg font-semibold mt-2">Gumball</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Gumball')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Gumball"
+            data-price="800.00"
           >
             Add to cart
           </button>
@@ -416,8 +426,9 @@
           <h3 class="text-lg font-semibold mt-2">Scooby Doo</h3>
           <p class="text-gray-600">KSH900.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Scooby Doo')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Scooby Doo"
+            data-price="900.00"
           >
             Add to cart
           </button>
@@ -434,17 +445,18 @@
           <h3 class="text-lg font-semibold mt-2">Stitch</h3>
           <p class="text-gray-600">KSH800.00</p>
           <button
-            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
-            onclick="addToCart('Stitch')"
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Stitch"
+            data-price="800.00"
           >
             Add to cart
           </button>
+        </div>
       </div>
     </section>
+
     <footer class="bg-gray-900 text-white py-6">
-      <div
-        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start"
-      >
+      <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start">
         <!-- Logo -->
         <div class="text-orange-500 text-3xl font-bold mb-6 md:mb-0">
           FIGGYHAVEN
@@ -453,31 +465,11 @@
         <div class="mb-6 md:mb-0">
           <h3 class="text-lg font-semibold mb-2">Useful Links</h3>
           <ul class="space-y-2">
-            <li>
-              <a href="index.html" class="text-gray-400 hover:text-orange-500"
-                >Home</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-gray-400 hover:text-orange-500"
-                >Products</a
-              >
-            </li>
-            <li>
-              <a href="about.html" class="text-gray-400 hover:text-orange-500"
-                >About</a
-              >
-            </li>
-            <li>
-              <a href="contact.html" class="text-gray-400 hover:text-orange-500"
-                >Contact</a
-              >
-            </li>
-            <li>
-              <a href="cart.html" class="text-gray-400 hover:text-orange-500"
-                >My Cart</a
-              >
-            </li>
+            <li><a href="index.html" class="text-gray-400 hover:text-orange-500">Home</a></li>
+            <li><a href="products.html" class="text-gray-400 hover:text-orange-500">Products</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-orange-500">About</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-orange-500">Contact</a></li>
+            <li><a href="cart.html" class="text-gray-400 hover:text-orange-500">My Cart</a></li>
           </ul>
         </div>
 
@@ -489,15 +481,18 @@
           <div class="flex space-x-2">
             <input
               type="email"
+              id="emailInput"
               placeholder="Your email address"
               class="w-full px-4 py-2 text-gray-900 rounded focus:outline-none"
             />
             <button
+              id="subscribeBtn"
               class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
             >
               Subscribe
             </button>
           </div>
+          <p id="subscriptionMessage" class="text-green-400 mt-2 hidden">Thank you for subscribing!</p>
         </div>
       </div>
 
@@ -508,5 +503,128 @@
         </div>
       </div>
     </footer>
+
+    <!-- Inline JavaScript -->
+    <script>
+      // User Authentication
+      const authBtn = document.getElementById('authBtn');
+      const authModal = document.getElementById('authModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const loginBtn = document.getElementById('loginBtn');
+      const registerBtn = document.getElementById('registerBtn');
+      const closeModal = document.getElementById('closeModal');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const modalMessage = document.getElementById('modalMessage');
+
+      // Check if user is logged in
+      let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      updateAuthButton();
+
+      authBtn.addEventListener('click', () => {
+        if (isLoggedIn) {
+          // Logout
+          localStorage.removeItem('isLoggedIn');
+          isLoggedIn = false;
+          updateAuthButton();
+          alert('You have logged out.');
+        } else {
+          // Show login modal
+          authModal.classList.remove('hidden');
+          modalTitle.textContent = 'Login';
+          loginBtn.classList.remove('hidden');
+          registerBtn.classList.remove('hidden');
+          modalMessage.classList.add('hidden');
+        }
+      });
+
+      closeModal.addEventListener('click', () => {
+        authModal.classList.add('hidden');
+        usernameInput.value = '';
+        passwordInput.value = '';
+        modalMessage.classList.add('hidden');
+      });
+
+      registerBtn.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        if (username && password) {
+          localStorage.setItem('username', username);
+          localStorage.setItem('password', password);
+          modalMessage.classList.remove('hidden');
+          modalMessage.classList.remove('text-red-500');
+          modalMessage.classList.add('text-green-500');
+          modalMessage.textContent = 'Registration successful! Please login.';
+          usernameInput.value = '';
+          passwordInput.value = '';
+        } else {
+          modalMessage.classList.remove('hidden');
+          modalMessage.textContent = 'Please enter a username and password.';
+        }
+      });
+
+      loginBtn.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const storedUsername = localStorage.getItem('username');
+        const storedPassword = localStorage.getItem('password');
+
+        if (username === storedUsername && password === storedPassword) {
+          localStorage.setItem('isLoggedIn', 'true');
+          isLoggedIn = true;
+          updateAuthButton();
+          authModal.classList.add('hidden');
+          alert('Login successful!');
+        } else {
+          modalMessage.classList.remove('hidden');
+          modalMessage.textContent = 'Invalid username or password.';
+        }
+      });
+
+      function updateAuthButton() {
+        authBtn.textContent = isLoggedIn ? 'Logout' : 'Login';
+      }
+
+      // Newsletter Subscription
+      const subscribeBtn = document.getElementById('subscribeBtn');
+      const emailInput = document.getElementById('emailInput');
+      const subscriptionMessage = document.getElementById('subscriptionMessage');
+
+      subscribeBtn.addEventListener('click', () => {
+        const email = emailInput.value.trim();
+        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          subscriptionMessage.classList.remove('hidden');
+          emailInput.value = '';
+          setTimeout(() => {
+            subscriptionMessage.classList.add('hidden');
+          }, 3000);
+        } else {
+          alert('Please enter a valid email address.');
+        }
+      });
+
+      // Cart Functionality
+      document.addEventListener('DOMContentLoaded', () => {
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+        addToCartButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            if (!isLoggedIn) {
+              alert('Please log in to add items to your cart.');
+              return;
+            }
+
+            const productName = button.getAttribute('data-name');
+            const productPrice = parseFloat(button.getAttribute('data-price'));
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(`${productName} has been added to your cart!`);
+          });
+        });
+      });
+    </script>
   </body>
 </html>

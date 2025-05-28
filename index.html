@@ -3,99 +3,164 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FiggyHaven</title>
+    <title>FiggyHaven - Cart</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100">
     <!-- Navbar -->
     <header class="flex items-center justify-between px-6 py-4 bg-white shadow">
+      <!-- Logo -->
       <div class="text-orange-500 text-3xl font-bold">FIGGYHAVEN</div>
-      <!-- Navigation -->
-      <nav class="flex items-center space-x-6">
-        <a href="#" class="text-gray-600 hover:text-orange-500">Home</a>
-        <a
-          href="products.html"
-          class="text-gray-600 border-b-2 border-orange-500 active"
-          >Products</a
-        >
-        <a href="contact.html" class="text-gray-600 hover:text-orange-500"
-          >Contact</a
-        >
-        <a href="about.html" class="text-gray-600 hover:text-orange-500"
-          >About</a
-        >
 
-        <a href="#" class="text-gray-600 hover:text-orange-500">
-          <!-- <img src="images/cart.png"  alt=""> -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-            />
+      <!-- Navigation -->
+      <nav class="flex items-center">
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="text-gray-600 hover:text-orange-500">Home</a></li>
+          <li><a href="products.html" class="text-gray-600 hover:text-orange-500">Products</a></li>
+          <li><a href="contact.html" class="text-gray-600 hover:text-orange-500">Contact</a></li>
+          <li><a href="about.html" class="text-gray-600 hover:text-orange-500">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Cart and Login -->
+      <div class="flex items-center space-x-4">
+        <!-- Cart Icon -->
+        <a href="cart.html" class="text-gray-600 hover:text-orange-500 border-b-2 border-orange-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
         </a>
-      </nav>
+        <!-- Login/Logout Button -->
+        <button id="authBtn" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Login</button>
+      </div>
     </header>
 
-    <!-- Products Section -->
-    <section class="container mx-auto px-6 py-12">
-      <!-- Breadcrumb -->
-    <div class="text-sm text-orange-500 mb-4 text-center p-50">
-      <a href="#" class="hover:underline">HOME</a> / CONTACT
-    </div>
-
-      <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">
-        Products
-      </h1>
-
-      <!-- Product Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Product 1 -->
-        <div class="bg-white p-4 rounded-lg shadow">
-          <img
-            src="https://images.unsplash.com/photo-1622288432430-41d16c7d906a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-            alt="Product 1"
-            class="w-full h-48 object-contain"
-          />
-        </div>
-        <!-- Product 2 -->
-        <div class="bg-white p-4 rounded-lg shadow">
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-            alt="Product 2"
-            class="w-full h-48 object-contain"
-          />
-        </div>
-        <!-- Product 3 -->
-        <div class="bg-white p-4 rounded-lg shadow">
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-            alt="Product 3"
-            class="w-full h-48 object-contain"
-          />
-        </div>
-        <!-- Product 4 -->
-        <div class="bg-white p-4 rounded-lg shadow">
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-            alt="Product 4"
-            class="w-full h-48 object-contain"
-          />
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 id="modalTitle" class="text-2xl font-bold mb-4">Login</h2>
+        <div class="space-y-4">
+          <div>
+            <label for="username" class="block text-gray-700">Username</label>
+            <input type="text" id="username" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500" />
+          </div>
+          <div>
+            <label for="password" class="block text-gray-700">Password</label>
+            <input type="password" id="password" class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500" />
+          </div>
+          <div class="flex space-x-4">
+            <button id="loginBtn" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Login</button>
+            <button id="registerBtn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Register</button>
+            <button id="closeModal" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Close</button>
+          </div>
+          <p id="modalMessage" class="text-red-500 mt-2 hidden"></p>
         </div>
       </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-cover bg-center h-96 flex items-center justify-center" style="background-image: url('images/bg.webp');">
+      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+      <div class="relative z-10 text-center text-white">
+        <h1 class="text-5xl font-bold mb-4">We sell cool, tiny stuff⚡️</h1>
+        <p>Upgrade the look of your workstation with colorful figurines</p>
+        <a href="products.html" class="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600">View All Figurines</a>
+      </div>
     </section>
+
+    <!-- Featured Collectibles Section -->
+    <section id="featured" class="container mx-auto px-6 py-12">
+      <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">
+        Featured Collectibles
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+        <!-- Featured Item 1 -->
+        <div class="text-center">
+          <div class="relative">
+            <img
+              src="https://uninterested-antelope.onrender.com/Images/1744183371225blob.webp"
+              alt="Master Shifu"
+              class="w-full h-64 object-contain transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+          <h3 class="text-lg font-semibold mt-2">Master Shifu</h3>
+          <p class="text-gray-600">KSH1200.00</p>
+          <button
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Master Shifu"
+            data-price="1200.00"
+          >
+            Add to cart
+          </button>
+        </div>
+
+        <!-- Featured Item 2 -->
+        <div class="text-center">
+          <div class="relative">
+            <img
+              src="https://uninterested-antelope.onrender.com/Images/1744183746073blob.webp"
+              alt="Stitch"
+              class="w-full h-64 object-contain transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+          <h3 class="text-lg font-semibold mt-2">Stitch</h3>
+          <p class="text-gray-600">KSH800.00</p>
+          <button
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Stitch"
+            data-price="800.00"
+          >
+            Add to cart
+          </button>
+        </div>
+
+        <!-- Featured Item 3 -->
+        <div class="text-center">
+          <div class="relative">
+            <img
+              src="https://uninterested-antelope.onrender.com/Images/1744210213209blob.webp"
+              alt="Lamborgini Reventon"
+              class="w-full h-64 object-contain transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+          <h3 class="text-lg font-semibold mt-2">Lamborgini Reventon</h3>
+          <p class="text-gray-600">KSH800.00</p>
+          <button
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Lamborgini Reventon"
+            data-price="800.00"
+          >
+            Add to cart
+          </button>
+        </div>
+
+        <!-- Featured Item 4 -->
+        <div class="text-center">
+          <div class="relative">
+            <img
+              src="https://uninterested-antelope.onrender.com/Images/1744184623599blob.webp"
+              alt="Batman"
+              class="w-full h-64 object-contain transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+          <h3 class="text-lg font-semibold mt-2">Batman</h3>
+          <p class="text-gray-600">KSH800.00</p>
+          <button
+            class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600 add-to-cart-btn"
+            data-name="Batman"
+            data-price="800.00"
+          >
+            Add to cart
+          </button>
+        </div>
+      </div>
+      <div>
+        <a href="products.html" class="mtt-4 bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600">View All Figurines</a>
+      </div>
+    </section>
+
     <footer class="bg-gray-900 text-white py-6">
-      <div
-        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start"
-      >
+      <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start">
         <!-- Logo -->
         <div class="text-orange-500 text-3xl font-bold mb-6 md:mb-0">
           FIGGYHAVEN
@@ -104,27 +169,11 @@
         <div class="mb-6 md:mb-0">
           <h3 class="text-lg font-semibold mb-2">Useful Links</h3>
           <ul class="space-y-2">
-            <li>
-              <a href="#" class="text-gray-400 hover:text-orange-500">Home</a>
-            </li>
-            <li>
-              <a href="#" class="text-gray-400 hover:text-orange-500"
-                >Products</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-gray-400 hover:text-orange-500">About</a>
-            </li>
-            <li>
-              <a href="#" class="text-gray-400 hover:text-orange-500"
-                >Contact</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-gray-400 hover:text-orange-500"
-                >My Cart</a
-              >
-            </li>
+            <li><a href="index.html" class="text-gray-400 hover:text-orange-500">Home</a></li>
+            <li><a href="products.html" class="text-gray-400 hover:text-orange-500">Products</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-orange-500">About</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-orange-500">Contact</a></li>
+            <li><a href="cart.html" class="text-gray-400 hover:text-orange-500">My Cart</a></li>
           </ul>
         </div>
 
@@ -136,15 +185,18 @@
           <div class="flex space-x-2">
             <input
               type="email"
+              id="emailInput"
               placeholder="Your email address"
               class="w-full px-4 py-2 text-gray-900 rounded focus:outline-none"
             />
             <button
+              id="subscribeBtn"
               class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
             >
               Subscribe
             </button>
           </div>
+          <p id="subscriptionMessage" class="text-green-400 mt-2 hidden">Thank you for subscribing!</p>
         </div>
       </div>
 
@@ -155,5 +207,166 @@
         </div>
       </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // User Authentication
+      const authBtn = document.getElementById('authBtn');
+      const authModal = document.getElementById('authModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const loginBtn = document.getElementById('loginBtn');
+      const registerBtn = document.getElementById('registerBtn');
+      const closeModal = document.getElementById('closeModal');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const modalMessage = document.getElementById('modalMessage');
+
+      // Check if user is logged in
+      let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      updateAuthButton();
+
+      authBtn.addEventListener('click', () => {
+        if (isLoggedIn) {
+          // Logout
+          localStorage.removeItem('isLoggedIn');
+          isLoggedIn = false;
+          updateAuthButton();
+          alert('You have logged out.');
+        } else {
+          // Show login modal
+          authModal.classList.remove('hidden');
+          modalTitle.textContent = 'Login';
+          loginBtn.classList.remove('hidden');
+          registerBtn.classList.remove('hidden');
+          modalMessage.classList.add('hidden');
+        }
+      });
+
+      closeModal.addEventListener('click', () => {
+        authModal.classList.add('hidden');
+        usernameInput.value = '';
+        passwordInput.value = '';
+        modalMessage.classList.add('hidden');
+      });
+
+      registerBtn.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        if (username && password) {
+          localStorage.setItem('username', username);
+          localStorage.setItem('password', password);
+          modalMessage.classList.remove('hidden');
+          modalMessage.classList.remove('text-red-500');
+          modalMessage.classList.add('text-green-500');
+          modalMessage.textContent = 'Registration successful! Please login.';
+          usernameInput.value = '';
+          passwordInput.value = '';
+        } else {
+          modalMessage.classList.remove('hidden');
+          modalMessage.textContent = 'Please enter a username and password.';
+        }
+      });
+
+      loginBtn.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const storedUsername = localStorage.getItem('username');
+        const storedPassword = localStorage.getItem('password');
+
+        if (username === storedUsername && password === storedPassword) {
+          localStorage.setItem('isLoggedIn', 'true');
+          isLoggedIn = true;
+          updateAuthButton();
+          authModal.classList.add('hidden');
+          alert('Login successful!');
+        } else {
+          modalMessage.classList.remove('hidden');
+          modalMessage.textContent = 'Invalid username or password.';
+        }
+      });
+
+      function updateAuthButton() {
+        authBtn.textContent = isLoggedIn ? 'Logout' : 'Login';
+      }
+
+      // Cart Functionality
+      const cartItemsContainer = document.getElementById('cartItems');
+      const cartTotalElement = document.getElementById('cartTotal');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      function displayCart() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItemsContainer.innerHTML = '';
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = '<p class="text-center text-gray-600">Your cart is empty.</p>';
+          cartTotalElement.textContent = 'Total: KSH0.00';
+          return;
+        }
+
+        let total = 0;
+        cart.forEach((item, index) => {
+          total += item.price;
+          const cartItem = document.createElement('div');
+          cartItem.className = 'flex justify-between items-center bg-white p-4 rounded-lg shadow';
+          cartItem.innerHTML = `
+            <div>
+              <h3 class="text-lg font-semibold">${item.name}</h3>
+              <p class="text-gray-600">KSH${item.price.toFixed(2)}</p>
+            </div>
+            <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" onclick="removeFromCart(${index})">Remove</button>
+          `;
+          cartItemsContainer.appendChild(cartItem);
+        });
+
+        cartTotalElement.textContent = `Total: KSH${total.toFixed(2)}`;
+      }
+
+      function removeFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+      }
+
+      checkoutBtn.addEventListener('click', () => {
+        if (!isLoggedIn) {
+          alert('Please log in to proceed to checkout.');
+          return;
+        }
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+          alert('Your cart is empty.');
+          return;
+        }
+
+        alert('Proceeding to checkout...');
+        // Clear cart after checkout (optional)
+        localStorage.removeItem('cart');
+        displayCart();
+      });
+
+      // Display cart on page load
+      displayCart();
+
+      // Newsletter Subscription
+      const subscribeBtn = document.getElementById('subscribeBtn');
+      const emailInput = document.getElementById('emailInput');
+      const subscriptionMessage = document.getElementById('subscriptionMessage');
+
+      subscribeBtn.addEventListener('click', () => {
+        const email = emailInput.value.trim();
+        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          subscriptionMessage.classList.remove('hidden');
+          emailInput.value = '';
+          setTimeout(() => {
+            subscriptionMessage.classList.add('hidden');
+          }, 3000);
+        } else {
+          alert('Please enter a valid email address.');
+        }
+      });
+    </script>
   </body>
 </html>
